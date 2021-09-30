@@ -19,7 +19,20 @@ function App() {
     }
     else{
       //show alert and add new item
+      let time = new Date().getTime().toString();
+      const newItem = {id: time,title: name}
+      setList([...list,newItem]);
+      setName('');
+
     }
+  }
+
+  const editBtnHandler  = (id) => {
+console.log(id + "from edit");
+  }
+
+  const deleteBtnHandler = (id) => {
+    console.log(id + "from delete");
   }
 
   return (
@@ -36,13 +49,13 @@ function App() {
           onChange={(e) => setName(e.target.value)}
         />
         <button type="submit" className="submit-btn">
-          {isEditing ? "edit" : "submit"}{" "}
+          {isEditing ? "edit" : "submit"}
         </button>
       </div>
       </form>
       <div className="grocery-container">
-        <List />
-        <button className="clear-btn">clear items</button>
+        <List items = {list} eBH = {editBtnHandler} dBH = {deleteBtnHandler}/>
+        <button className="clear-btn" onClick = {() => setList([])}>clear items</button>
       </div>
     </section>
   );
