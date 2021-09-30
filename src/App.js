@@ -31,9 +31,13 @@ function App() {
     setList([]);
   }
 
-  const editBtnHandler  = (id) => {
-console.log(id + "from edit");
-  }
+  const editBtnHandler = (id) => {
+    // console.log(id + "from edit");
+    const specItem = list.find((item) => item.id === id);
+    setIsEditing(true);
+    setEditId(id);
+    setName(specItem.title);
+  };
 
   const deleteBtnHandler = (id) => {
   const newItems = list.filter((item) => item.id !== id)
