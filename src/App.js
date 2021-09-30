@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
 import List from "./List";
 import Alert from "./Alert";
+const getLocalStorage = () => {
+  let li = localStorage.getItem('list');
+  if(li){
+    return (li = JSON.parse(li))
+
+  }else{
+    return [];
+  }
+}
 
 function App() {
   const [name, setName] = useState("");
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(getLocalStorage());
   const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState(null);
   const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
@@ -64,6 +73,11 @@ function App() {
     setAlert({show,type,msg});
 
   }
+
+  //adding a useEffect to update the local storage for every list change made.
+  useEffect(() => {
+    localStorage.setItem('list', JSON.stringify(list))
+  },[list]);
 
   return (
     <section className="section-center">
