@@ -30,6 +30,7 @@ function App() {
     }
     else{
       //show alert and add new item
+      showAlert(true,'success','item added to the list')
       let time = new Date().getTime().toString();
       const newItem = {id: time,title: name}
       setList([...list,newItem]);
@@ -55,10 +56,16 @@ function App() {
   setList(newItems);
   }
 
+  const showAlert = (show='false' ,type= "", msg= ""  ) => {
+    //here as it is just show:show we can skip and write it as show
+    setAlert({show,type,msg});
+
+  }
+
   return (
     <section className="section-center">
-      <form class="grocery-form" onSubmit= {handleSubmit}>
-        {alert.show && <Alert />}
+      <form className="grocery-form" onSubmit= {handleSubmit}>
+        {alert.show && <Alert {...alert}/>}
         <h3>grocery buddy!</h3>
       <div className="form-control">
         <input
