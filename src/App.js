@@ -13,9 +13,11 @@ function App() {
     e.preventDefault();
     if(!name){
       //handle alert
+      showAlert(true,'danger','enter a grocery item to be added.')
     }
     else if(name && isEditing){
       //handle different type of alert and some changes
+      showAlert(true,'success','item edit successful!')
       setList( 
         list.map((item) => {
          if(item.id === editId){
@@ -52,6 +54,7 @@ function App() {
   };
 
   const deleteBtnHandler = (id) => {
+    showAlert(true,'danger','delted item successfuly.');
   const newItems = list.filter((item) => item.id !== id)
   setList(newItems);
   }
@@ -65,7 +68,7 @@ function App() {
   return (
     <section className="section-center">
       <form className="grocery-form" onSubmit= {handleSubmit}>
-        {alert.show && <Alert {...alert}/>}
+        {alert.show && <Alert {...alert} removeAlert = {showAlert}/>}
         <h3>grocery buddy!</h3>
       <div className="form-control">
         <input
@@ -81,7 +84,7 @@ function App() {
       </div>
       </form>
       {list.length > 0 && <div className="grocery-container">
-        <List items = {list} eBH = {editBtnHandler} dBH = {deleteBtnHandler}/>
+        <List items = {list} eBH = {editBtnHandler} dBH = {deleteBtnHandler} list={list}/>
         <button className="clear-btn" onClick = {clearList}>clear items</button>
       </div>}
     </section>
