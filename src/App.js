@@ -32,7 +32,8 @@ console.log(id + "from edit");
   }
 
   const deleteBtnHandler = (id) => {
-    console.log(id + "from delete");
+  const newItems = list.filter((item) => item.id !== id)
+  setList(newItems);
   }
 
   return (
