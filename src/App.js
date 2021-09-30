@@ -59,7 +59,7 @@ function App() {
     <section className="section-center">
       <form class="grocery-form" onSubmit= {handleSubmit}>
         {alert.show && <Alert />}
-        <h3>grocery bud</h3>
+        <h3>grocery buddy!</h3>
       <div className="form-control">
         <input
           type="text"
@@ -73,10 +73,10 @@ function App() {
         </button>
       </div>
       </form>
-      <div className="grocery-container">
+      {list.length > 0 && <div className="grocery-container">
         <List items = {list} eBH = {editBtnHandler} dBH = {deleteBtnHandler}/>
         <button className="clear-btn" onClick = {clearList}>clear items</button>
-      </div>
+      </div>}
     </section>
   );
 }
