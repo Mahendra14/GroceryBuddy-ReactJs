@@ -16,6 +16,17 @@ function App() {
     }
     else if(name && isEditing){
       //handle different type of alert and some changes
+      setList( 
+        list.map((item) => {
+         if(item.id === editId){
+           return {...item,title: name}
+         }
+         return item
+        })
+      );
+      setName('');
+      setIsEditing(false);
+      setEditId(null);
     }
     else{
       //show alert and add new item
