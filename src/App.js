@@ -27,6 +27,10 @@ function App() {
     }
   }
 
+  const clearList = () => {
+    setList([]);
+  }
+
   const editBtnHandler  = (id) => {
 console.log(id + "from edit");
   }
@@ -56,7 +60,7 @@ console.log(id + "from edit");
       </form>
       <div className="grocery-container">
         <List items = {list} eBH = {editBtnHandler} dBH = {deleteBtnHandler}/>
-        <button className="clear-btn" onClick = {() => setList([])}>clear items</button>
+        <button className="clear-btn" onClick = {clearList}>clear items</button>
       </div>
     </section>
   );
